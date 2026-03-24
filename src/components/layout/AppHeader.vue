@@ -6,7 +6,7 @@
     <div class="flex items-center gap-3">
       <span class="hidden sm:block text-sm">{{ authStore.user?.name }}</span>
       <button
-        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm -300 hover:text-white hover:bg-white/10 transition-colors"
+        class="bg-primary text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm -300 hover:bg-primary-dark transition-colors"
         @click="handleLogout"
       >
         <span class="hidden sm:inline">Sair</span>

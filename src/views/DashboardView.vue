@@ -21,8 +21,8 @@
         </BaseButton>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-3">
-        <div>
+      <div class="flex flex-col md:flex-row">
+        <div class="border-0 border-gray-300 p-3 md:border-t md:border-r">
           <FilterBar />
         </div>
         <div v-if="taskStore.loading" class="flex justify-center py-20">
@@ -30,7 +30,10 @@
             class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"
           />
         </div>
-        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          v-else
+          class="grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
+        >
           <TaskList
             v-for="cat in filteredCategories"
             :key="cat"

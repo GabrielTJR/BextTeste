@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col items-left gap-3">
-    <div class="bg-white rounded-xl border border-gray-100 px-4 py-3">
+    <div
+      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-xs shadow-black hover:shadow-xl transition-shadow duration-300"
+    >
       <h3 class="text-lg p-2">Categoria</h3>
-      <div
-        class="flex flex-row items-left gap-1 flex-wrap bg-white rounded-xl border border-gray-100 px-4 py-3 mb-6 md:flex-col"
-      >
+      <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
         <button
           v-for="opt in categoryOptions"
           :key="opt.value"
@@ -21,9 +21,11 @@
       </div>
     </div>
 
-    <div class="bg-white rounded-xl border border-gray-100 px-4 py-3">
-      <h3 class="text-lg m-4">Categoria</h3>
-      <div class="flex flex-row items-left gap-1 flex-wrap md:flex-col">
+    <div
+      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-xs shadow-black hover:shadow-xl transition-shadow duration-300"
+    >
+      <h3 class="text-lg m-4">Prioridade</h3>
+      <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
         <button
           v-for="opt in priorityOptions"
           :key="opt.value"
