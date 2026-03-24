@@ -24,7 +24,7 @@
     <div
       class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-xs shadow-black hover:shadow-xl transition-shadow duration-300"
     >
-      <h3 class="text-lg m-4">Prioridade</h3>
+      <h3 class="text-lg p-2">Prioridade</h3>
       <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
         <button
           v-for="opt in priorityOptions"
