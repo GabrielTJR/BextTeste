@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas — Bext Teste Técnico Front-end
+# Gerenciador de Tarefas — Bext Teste
 
 Aplicação web de gerenciamento de tarefas desenvolvida como parte do processo seletivo da Bext.
 
@@ -12,7 +12,6 @@ Aplicação web de gerenciamento de tarefas desenvolvida como parte do processo 
 - **Vite** — bundler e dev server
 - **ESLint + Prettier** — padronização de código
 - **Mock API** — localStorage com delay simulado
-
 
 ## Como executar localmente
 
@@ -38,10 +37,11 @@ Acesse: **http://localhost:5173**
 
 ### Credenciais de teste
 
-| E-mail | Senha |
-|---|---|
-| gabriel@bext.vc | 123456 |
-| admin@bext.vc | admin123 |
+| E-mail          | Senha    |
+| --------------- | -------- |
+| gabriel@bext.vc | 123456   |
+| user2@bext.vc   | 123456   |
+| admin@bext.vc   | admin123 |
 
 ### Outros comandos
 
@@ -64,5 +64,7 @@ npm run format
 Minha experiência com esse teste foi bem empolgante, percebo que ainda tenho várias coisas a aprender, e que com a prática tudo é possível. Como atualmente ainda estou desenvolvendo meus conhecimentos com Vue e Typescript, tive um pouco de dificuldade para realizar o funcionamento correto de algumas funcionalidades, porém busquei soluções nas ferramentas disponíveis atualmente, o que me mostrou e ensinou recursos para configurar o funcionamento correto delas.
 
 Recentemente estive realizando um projeto similar, porém com um intúito diferente, e que não atendia aos mesmos requisitos deste teste, o que me impediu de reutilizar 100% deste meu projeto, mas ainda assim me ajudou a ter uma noção maior sobre a construção do teste.
+
+Utilizei inicialmente a IA para configurar a base da estrutura para mim, então refiz todo o layout e recursos disponíveis no código atual, adicionando funcionalidades e itens reutilizaveis, gerando um site com uma cara mais minha e rodando do jeito que eu desejava.
 
 Em resumo acredito que este teste serviu além de uma forma de recrutamento, como um aprendizado e crescimento para o meu desenvolvimento.

@@ -29,7 +29,7 @@
           class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
         >
           <button
-            class="p-1 rounded text-white hover:text-primary hover:bg-primary/10 transition-colors"
+            class="p-1 rounded text-white hover:text-primary hover:bg-blue-50 transition-colors"
             title="Editar"
             @click.stop="$emit('edit', task)"
           >

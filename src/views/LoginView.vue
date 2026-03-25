@@ -1,15 +1,15 @@
 <template>
   <div class="min-h-screen bg-background flex justify-between">
-    <div class="hidden w-full h-screen flex justify-center">
+    <div class="hidden md:flex w-full h-screen flex justify-center">
       <img src="../../favicon.png" class="w-auto h-screen" />
     </div>
-    <div class="bg-white w-full flex flex-col justify-center h-screen md:max-w-sm">
+    <div class="bg-[var(--color-back)] w-full flex flex-col justify-center h-screen md:max-w-sm">
       <div class="text-center mb-4">
-        <h1 class="text-2xl font-bold text-dark">Gerenciado de Tarefas</h1>
+        <h1 class="text-2xl font-bold text-white">Gerenciado de Tarefas</h1>
       </div>
 
       <div class="w-full shadow-sm p-8">
-        <h2 class="text-lg font-semibold text-dark mb-6">Entrar na plataforma</h2>
+        <h2 class="text-lg font-semibold text-white mb-6">Entrar na plataforma</h2>
 
         <form class="flex flex-col gap-4" @submit.prevent="handleLogin">
           <BaseInput

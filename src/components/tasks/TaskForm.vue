@@ -118,7 +118,7 @@ watch(
 )
 
 const categoryOptions = [
-  { value: 'health', label: 'Pessoal' },
+  { value: 'health', label: 'Saúde' },
   { value: 'work', label: 'Trabalho' },
   { value: 'study', label: 'Estudo' },
 ]
