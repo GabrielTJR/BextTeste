@@ -50,7 +50,7 @@
                   type === 'delete'
                     ? 'Excluir tarefa?'
                     : props.task?.completed === false
-                      ? 'Concluir tarefa'
+                      ? 'Concluir tarefa?'
                       : 'Reabrir Tarefa?'
                 }}
               </p>

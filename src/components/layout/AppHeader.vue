@@ -20,19 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useTaskStore } from '@/stores/tasks'
-import { storeToRefs } from 'pinia'
 
 const authStore = useAuthStore()
 const taskStore = useTaskStore()
 const router = useRouter()
-const { userTasks } = storeToRefs(taskStore)
-
-const pendingCount = computed(() => userTasks.value.filter((t) => !t.completed).length)
-const completedCount = computed(() => userTasks.value.filter((t) => t.completed).length)
 
 function handleLogout() {
   authStore.logout()
