@@ -65,4 +65,6 @@ Minha experiência com esse teste foi bem empolgante, percebo que ainda tenho v�
 
 Recentemente estive realizando um projeto similar, porém com um intúito diferente, e que não atendia aos mesmos requisitos deste teste, o que me impediu de reutilizar 100% deste meu projeto, mas ainda assim me ajudou a ter uma noção maior sobre a construção do teste.
 
+Utilizei inicialmente a IA para configurar a base da estrutura para mim, então refiz todo o layout e recursos disponíveis no código atual, adicionando funcionalidades e itens reutilizaveis, gerando um site com uma cara mais minha e rodando do jeito que eu desejava.
+
 Em resumo acredito que este teste serviu além de uma forma de recrutamento, como um aprendizado e crescimento para o meu desenvolvimento.
