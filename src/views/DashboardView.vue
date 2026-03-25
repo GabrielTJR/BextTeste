@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-[var(--color-back)] flex flex-col">
     <AppHeader />
 
-    <main class="flex-1 p-4 mx-auto w-full">
+    <main class="flex-1 p-8 mx-auto w-full">
       <div class="flex items-center justify-between mb-2">
         <div>
           <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
@@ -21,7 +21,10 @@
         </BaseButton>
       </div>
 
-      <div class="flex flex-col md:flex-row">
+      <div
+        v-if="showFormModal === false && showDetailModal === false"
+        class="flex flex-col md:flex-row"
+      >
         <div class="border-0 border-gray-300 p-3 md:border-t md:border-r">
           <FilterBar />
         </div>
@@ -31,7 +34,7 @@
           />
         </div>
         <div
-          v-else-if="showFormModal === false && showDetailModal === false"
+          v-else
           class="grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
         >
           <TaskList
@@ -46,22 +49,22 @@
             class="bg-white shadow-md shadow-black hover:shadow-white rounded-xl border border-gray-100 px-4 py-3 mb-6"
           />
         </div>
-        <div v-else-if="showFormModal" class="w-full">
-          <TaskForm
-            :task="selectedTask"
-            :loading="taskStore.loading"
-            @submit="handleFormSubmit"
-            @cancel="showFormModal = false"
-            class="gap-6 border-0 border-gray-300 p-3 md:border-t"
-          />
-        </div>
-        <div v-else class="w-full">
-          <TaskDetail
-            :task="selectedTask"
-            @deleted="showDetailModal = false"
-            class="gap-6 border-0 border-gray-300 p-3 md:border-t"
-          />
-        </div>
+      </div>
+      <div v-else-if="showFormModal" class="flex justify-center w-full">
+        <TaskForm
+          :task="selectedTask"
+          :loading="taskStore.loading"
+          @submit="handleFormSubmit"
+          @cancel="showFormModal = false"
+          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-3/4"
+        />
+      </div>
+      <div v-else class="flex justify-center w-full">
+        <TaskDetail
+          :task="selectedTask"
+          @deleted="showDetailModal = false"
+          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-3/4"
+        />
       </div>
     </main>
   </div>
@@ -79,7 +82,7 @@ import TaskDetail from '@/components/tasks/TaskDetail.vue'
 import type { Task, Category } from '@/types'
 
 const taskStore = useTaskStore()
-const categories: Category[] = ['personal', 'work', 'study']
+const categories: Category[] = ['health', 'work', 'study']
 
 const showFormModal = ref(false)
 const showDetailModal = ref(false)

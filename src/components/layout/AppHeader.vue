@@ -6,7 +6,7 @@
       <img src="/favicon.png" class="w-auto h-8" />
     </div>
     <div class="flex items-center gap-3">
-      <h1 class="font-semibold text-3xl tracking-tight">Gerenciador de Tarefas</h1>
+      <span class="font-semibold text-lg mb:text-3xl tracking-tight">Gerenciador de Tarefas</span>
     </div>
     <div class="flex items-center gap-3">
       <span class="hidden sm:block text-base">{{ authStore.user?.name }}</span>

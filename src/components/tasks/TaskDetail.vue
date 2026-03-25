@@ -32,22 +32,23 @@
               {{ task.completed ? 'Concluída' : 'Em andamento' }}
             </p>
           </div>
-          <div v-if="task.dueDate" class="p-3 rounded-xl bg-background">
-            <p class="text-xs text-gray mb-1">Prazo</p>
-            <p class="text-sm font-medium text-dark font-mono">{{ formatDate(task.dueDate) }}</p>
-          </div>
           <div class="p-3 rounded-xl bg-background">
             <p class="text-xs text-gray mb-1">Criada em</p>
             <p class="text-sm font-medium text-dark font-mono">{{ formatDate(task.createdAt) }}</p>
           </div>
+          <div v-if="task.dueDate" class="p-3 rounded-xl bg-background">
+            <p class="text-xs text-gray mb-1">Prazo</p>
+            <p class="text-sm font-medium text-dark font-mono">{{ formatDate(task.dueDate) }}</p>
+          </div>
         </div>
 
         <div class="flex justify-between items-center pt-2">
-          <BaseButton variant="danger" size="sm" @click="handleDelete">Excluir</BaseButton>
-
-          <BaseButton type="button" variant="ghost" size="md" @click="$emit('deleted')"
+          <BaseButton type="button" variant="ghost" size="sm" @click="$emit('deleted')"
             >Cancelar</BaseButton
           >
+
+          <BaseButton variant="danger" size="sm" @click="handleDelete">Excluir</BaseButton>
+
           <BaseButton variant="primary" size="sm" @click="isEditing = true"
             >Editar tarefa</BaseButton
           >
@@ -85,7 +86,7 @@ const isEditing = ref(false)
 const loading = ref(false)
 
 const categoryLabel: Record<Category, string> = {
-  personal: 'Pessoal',
+  health: 'Pessoal',
   work: 'Trabalho',
   study: 'Estudo',
 }

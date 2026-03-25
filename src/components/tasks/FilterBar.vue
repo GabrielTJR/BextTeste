@@ -61,7 +61,7 @@ const { filters } = storeToRefs(taskStore)
 
 const categoryOptions = [
   { value: 'all', label: 'Todos' },
-  { value: 'personal', label: 'Pessoal' },
+  { value: 'health', label: 'Saúde' },
   { value: 'work', label: 'Trabalho' },
   { value: 'study', label: 'Estudo' },
 ]

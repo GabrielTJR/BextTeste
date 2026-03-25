@@ -38,7 +38,7 @@
 
     <BaseInput
       v-model="form.dueDate"
-      label="Data de Conclusão"
+      label="Prazo de Conclusão"
       type="date"
       :error="errors.dt_conclusao"
     />
@@ -118,7 +118,7 @@ watch(
 )
 
 const categoryOptions = [
-  { value: 'personal', label: 'Pessoal' },
+  { value: 'health', label: 'Pessoal' },
   { value: 'work', label: 'Trabalho' },
   { value: 'study', label: 'Estudo' },
 ]

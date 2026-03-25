@@ -16,9 +16,11 @@ export const useTaskStore = defineStore('tasks', () => {
 
   const userTasks = computed(() => {
     const authStore = useAuthStore()
-    return tasks.value.filter((t) => t.userId === authStore.user?.id || authStore.user?.type === 'admin')
+    return tasks.value.filter(
+      (t) => t.userId === authStore.user?.id || authStore.user?.type === 'admin'
+    )
   })
-  
+
   const filteredTasks = computed(() => {
     return userTasks.value.filter((task) => {
       const matchCategory =
@@ -30,7 +32,7 @@ export const useTaskStore = defineStore('tasks', () => {
   })
 
   const tasksByCategory = computed(() => {
-    const categories: Record<Category, Task[]> = { personal: [], work: [], study: [] }
+    const categories: Record<Category, Task[]> = { health: [], work: [], study: [] }
     filteredTasks.value.forEach((task) => {
       categories[task.category].push(task)
     })

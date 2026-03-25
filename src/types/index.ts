@@ -1,5 +1,5 @@
 export type Priority = 'low' | 'medium' | 'high'
-export type Category = 'personal' | 'work' | 'study'
+export type Category = 'health' | 'work' | 'study'
 export type TypeUser = 'user' | 'admin'
 
 export interface Task {

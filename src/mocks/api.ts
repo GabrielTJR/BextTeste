@@ -1,9 +1,9 @@
 import type { Task, User } from '@/types'
 
 export const MOCK_USERS: User[] = [
-  { id:1, email: 'gabriel@bext.vc', password: '123456', name: 'Gabriel Toscano', type: 'user'},
-  { id:2, email: 'user2@bext.vc', password: '123456', name: 'Usuário 2', type: 'user'},
-  { id:3, email: 'admin@bext.vc', password: 'admin123', name: 'Admin Bext', type: 'admin'},
+  { id: 1, email: 'gabriel@bext.vc', password: '123456', name: 'Gabriel Toscano', type: 'user' },
+  { id: 2, email: 'user2@bext.vc', password: '123456', name: 'Usuário 2', type: 'user' },
+  { id: 3, email: 'admin@bext.vc', password: 'admin123', name: 'Admin Bext', type: 'admin' },
 ]
 
 const SEED_TASKS: Task[] = [
@@ -35,7 +35,7 @@ const SEED_TASKS: Task[] = [
     title: 'Academia',
     description: 'Treino de musculação — foco em membros superiores.',
     priority: 'low',
-    category: 'personal',
+    category: 'health',
     dueDate: null,
     completed: true,
     createdAt: new Date().toISOString(),
