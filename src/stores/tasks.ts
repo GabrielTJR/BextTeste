@@ -32,8 +32,9 @@ export const useTaskStore = defineStore('tasks', () => {
   })
 
   const tasksByCategory = computed(() => {
-    const categories: Record<Category, Task[]> = { health: [], work: [], study: [] }
+    const categories: Record<Category, Task[]> = { all: [], health: [], work: [], study: [] }
     filteredTasks.value.forEach((task) => {
+      categories['all'].push(task)
       categories[task.category].push(task)
     })
     return categories

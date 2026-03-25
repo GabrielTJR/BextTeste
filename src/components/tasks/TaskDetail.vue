@@ -102,6 +102,7 @@ const taskToConfirm = ref<Task | null>(null)
 const confirmType = ref<'delete' | 'complete'>('delete')
 
 const categoryLabel: Record<Category, string> = {
+  all: 'Todos',
   health: 'Saúde',
   work: 'Trabalho',
   study: 'Estudo',

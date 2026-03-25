@@ -35,7 +35,7 @@
         </div>
         <div
           v-else
-          class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
+          class="w-full flex flex-col md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
         >
           <TaskList
             v-for="cat in filteredCategories"
@@ -84,7 +84,7 @@ import type { Task, Category } from '@/types'
 
 const authStore = useAuthStore()
 const taskStore = useTaskStore()
-const categories: Category[] = ['health', 'work', 'study']
+const categories: Category[] = ['all', 'health', 'work', 'study']
 
 const showFormModal = ref(false)
 const showDetailModal = ref(false)
@@ -100,9 +100,7 @@ const today = computed(() =>
 )
 
 const filteredCategories = computed(() => {
-  return categories.filter(
-    (cat) => taskStore.filters.category === 'all' || taskStore.filters.category === cat
-  )
+  return categories.filter((cat) => taskStore.filters.category === cat)
 })
 
 onMounted(() => taskStore.fetchTasks())
