@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas — Bext Teste Técnico Front-end
+# Gerenciador de Tarefas — Bext Teste
 
 Aplicação web de gerenciamento de tarefas desenvolvida como parte do processo seletivo da Bext.
 
@@ -12,7 +12,6 @@ Aplicação web de gerenciamento de tarefas desenvolvida como parte do processo 
 - **Vite** — bundler e dev server
 - **ESLint + Prettier** — padronização de código
 - **Mock API** — localStorage com delay simulado
-
 
 ## Como executar localmente
 
@@ -38,10 +37,11 @@ Acesse: **http://localhost:5173**
 
 ### Credenciais de teste
 
-| E-mail | Senha |
-|---|---|
-| gabriel@bext.vc | 123456 |
-| admin@bext.vc | admin123 |
+| E-mail          | Senha    |
+| --------------- | -------- |
+| gabriel@bext.vc | 123456   |
+| user2@bext.vc   | 123456   |
+| admin@bext.vc   | admin123 |
 
 ### Outros comandos
 
