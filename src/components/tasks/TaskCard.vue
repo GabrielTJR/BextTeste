@@ -10,29 +10,6 @@
     <div class="p-4">
       <div class="flex items-start justify-between gap-2 mb-2">
         <div class="flex items-start gap-2 min-w-0">
-          <button
-            class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors"
-            :class="
-              task.completed ? 'bg-primary border-primary' : 'border-gray-300 hover:border-primary'
-            "
-            @click.stop="$emit('toggle', task.id)"
-          >
-            <svg
-              v-if="task.completed"
-              class="w-3 h-3 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="3"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </button>
-
           <h3
             :class="[
               'text-sm font-semibold leading-snug break-words truncate',
@@ -74,16 +51,35 @@
               />
             </svg>
           </button>
+          <button
+            class="rounded text-gray-400 hover:text-red-500 hover:bg-green-50 hover:text-green-500 transition-colors"
+            @click.stop="$emit('toggle', task.id)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </button>
         </div>
       </div>
 
-      <p v-if="task.description" class="text-xs text-gray-500 mb-3 line-clamp-2 pl-7">
+      <p v-if="task.description" class="text-xs text-gray-500 mb-3 line-clamp-2">
         {{ task.description }}
       </p>
 
       <div class="footer flex items-center justify-between">
-        <PriorityBadge :priority="task.priority" />
-        <div class="flex flex-col items-end gap-0.5">
+        <div class="flex flex-col w-full justify-start gap-0.5">
+          <PriorityBadge :priority="task.priority" />
           <span v-if="isAdmin" class="text-xs text-gray-400 italic">
             Usuário: {{ taskOwner }}
           </span>

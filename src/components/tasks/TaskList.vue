@@ -47,7 +47,7 @@ defineEmits<{
 }>()
 
 const categoryMeta: Record<Category, { label: string }> = {
-  health: { label: 'Pessoal' },
+  health: { label: 'Saúde' },
   work: { label: 'Trabalho' },
   study: { label: 'Estudo' },
 }

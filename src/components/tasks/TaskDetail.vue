@@ -2,18 +2,22 @@
   <div v-if="task" class="flex flex-col gap-4 p-3">
     <div v-if="!isEditing">
       <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between gap-3">
+        <div class="flex items-start text-white flex-col gap-1">
+          <p>Título:</p>
           <h3
             :class="[
               'text-xl font-semibold',
               task.completed ? 'line-through text-gray-400' : 'text-white',
             ]"
           >
-            Título: <br />{{ task.title }}
+            {{ task.title }}
           </h3>
-          <PriorityBadge :priority="task.priority" />
         </div>
 
+        <div class="flex flex-col text-white gap-1">
+          <p>Prioridade:</p>
+          <PriorityBadge :priority="task.priority" />
+        </div>
         <p v-if="task.description" class="text-sm text-white leading-relaxed break-words">
           Descrição: <br />{{ task.description }}
         </p>

@@ -2,14 +2,13 @@
   <header
     class="text-white px-4 sm:px-6 py-4 flex items-center justify-between shadow-md shadow-white"
   >
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 flex-1">
       <img src="/favicon.png" class="w-auto h-8" />
     </div>
-    <div class="flex items-center gap-3">
-      <span class="font-semibold text-lg mb:text-3xl tracking-tight">Gerenciador de Tarefas</span>
+    <div class="flex items-center gap-3 flex-1 text-center justify-center">
+      <span class="font-semibold text-lg md:text-3xl tracking-tight">Gerenciador de Tarefas</span>
     </div>
-    <div class="flex items-center gap-3">
-      <span class="hidden sm:block text-base">{{ authStore.user?.name }}</span>
+    <div class="flex items-center gap-3 flex-1 justify-end">
       <button
         class="bg-primary text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base -300 hover:bg-primary-dark transition-colors"
         @click="handleLogout"

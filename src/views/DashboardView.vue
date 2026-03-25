@@ -2,11 +2,11 @@
   <div class="min-h-screen bg-[var(--color-back)] flex flex-col">
     <AppHeader />
 
-    <main class="flex-1 p-8 mx-auto w-full">
+    <main class="flex-1 p-6 mx-auto w-full">
       <div class="flex items-center justify-between mb-2">
         <div>
+          <span class="hidden sm:block text-white">{{ authStore.user?.name }}</span>
           <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
-          <p class="text-sm text-gray-400 mt-0.5">{{ today }}</p>
         </div>
         <BaseButton variant="primary" size="md" @click="openCreateModal">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,14 +56,14 @@
           :loading="taskStore.loading"
           @submit="handleFormSubmit"
           @cancel="showFormModal = false"
-          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-3/4"
+          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-1/3"
         />
       </div>
       <div v-else class="flex justify-center w-full">
         <TaskDetail
           :task="selectedTask"
           @deleted="showDetailModal = false"
-          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-3/4"
+          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-1/3"
         />
       </div>
     </main>
@@ -73,6 +73,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useTaskStore } from '@/stores/tasks'
+import { useAuthStore } from '@/stores/auth'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import FilterBar from '@/components/tasks/FilterBar.vue'
@@ -81,6 +82,7 @@ import TaskForm from '@/components/tasks/TaskForm.vue'
 import TaskDetail from '@/components/tasks/TaskDetail.vue'
 import type { Task, Category } from '@/types'
 
+const authStore = useAuthStore()
 const taskStore = useTaskStore()
 const categories: Category[] = ['health', 'work', 'study']
 
