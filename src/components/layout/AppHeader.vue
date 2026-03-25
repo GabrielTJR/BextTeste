@@ -10,10 +10,10 @@
     </div>
     <div class="flex items-center gap-3 flex-1 justify-end">
       <button
-        class="bg-primary text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base -300 hover:bg-primary-dark transition-colors"
+        class="bg-primary text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base-300 hover:bg-primary-dark transition-colors"
         @click="handleLogout"
       >
-        <span class="hidden sm:inline">Sair</span>
+        <span>Sair</span>
       </button>
     </div>
   </header>

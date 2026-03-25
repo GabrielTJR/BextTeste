@@ -1,10 +1,9 @@
 <template>
   <div
-    :class="[
-      'group bg-white rounded-xl border transition-all duration-200 cursor-pointer',
-      'hover:shadow-md hover:-translate-y-0.5',
-      task.completed ? 'border-gray-200 opacity-70' : 'border-gray-200 hover:border-primary/30',
-    ]"
+    class="group bg-[var(--color-back)] rounded-xl border border-gray-200 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
+    :class="{
+      'opacity-85': task.completed,
+    }"
     @click="$emit('view', task)"
   >
     <div class="p-4">
@@ -13,18 +12,24 @@
           <h3
             :class="[
               'text-sm font-semibold leading-snug break-words truncate',
-              task.completed ? 'line-through text-gray-400' : 'text-dark',
+              task.completed ? 'line-through text-white' : 'text-white',
             ]"
           >
             {{ task.title }}
           </h3>
+          <span
+            v-if="task.completed"
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-green-500"
+          >
+            Concluído
+          </span>
         </div>
 
         <div
           class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
         >
           <button
-            class="p-1 rounded text-gray-400 hover:text-primary hover:bg-primary/10 transition-colors"
+            class="p-1 rounded text-white hover:text-primary hover:bg-primary/10 transition-colors"
             title="Editar"
             @click.stop="$emit('edit', task)"
           >
@@ -38,9 +43,9 @@
             </svg>
           </button>
           <button
-            class="p-1 rounded text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+            class="p-1 rounded text-white hover:text-red-500 hover:bg-red-50 transition-colors"
             title="Excluir"
-            @click.stop="$emit('delete', task.id)"
+            @click.stop="askDelete"
           >
             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
@@ -52,8 +57,8 @@
             </svg>
           </button>
           <button
-            class="rounded text-gray-400 hover:text-red-500 hover:bg-green-50 hover:text-green-500 transition-colors"
-            @click.stop="$emit('toggle', task.id)"
+            class="rounded text-white hover:text-green-500 hover:bg-green-50 hover:text-green-500 transition-colors"
+            @click.stop="askComplete"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,23 +75,27 @@
               />
             </svg>
           </button>
+          <BaseConfirm
+            :task="taskToConfirm"
+            :type="confirmType"
+            @confirm="handleConfirm"
+            @cancel="taskToConfirm = null"
+          />
         </div>
       </div>
 
-      <p v-if="task.description" class="text-xs text-gray-500 mb-3 line-clamp-2">
+      <p v-if="task.description" class="text-xs text-white mb-3 line-clamp-2">
         {{ task.description }}
       </p>
 
       <div class="footer flex items-center justify-between">
         <div class="flex flex-col w-full justify-start gap-0.5">
           <PriorityBadge :priority="task.priority" />
-          <span v-if="isAdmin" class="text-xs text-gray-400 italic">
-            Usuário: {{ taskOwner }}
-          </span>
+          <span v-if="isAdmin" class="text-xs text-white italic"> Usuário: {{ taskOwner }} </span>
           <span
             v-if="task.dueDate"
             class="flex items-center gap-1 text-xs font-mono"
-            :class="isOverdue ? 'text-red-500 font-semibold' : 'text-gray-400'"
+            :class="isOverdue ? 'text-red-500 font-semibold' : 'text-white'"
           >
             <svg
               v-if="isOverdue"
@@ -111,10 +120,12 @@
 </template>
 
 <script setup lang="ts">
-import PriorityBadge from '@/components/ui/PriorityBadge.vue'
+import PriorityBadge from '../ui/PriorityBadge.vue'
+import BaseConfirm from '../ui/BaseConfirm.vue'
 import type { Task } from '@/types'
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { useTaskStore } from '@/stores/tasks'
 import { MOCK_USERS } from '@/mocks/api'
 
 const props = defineProps<{ task: Task }>()
@@ -127,16 +138,43 @@ defineEmits<{
 
 const today = new Date().toISOString().split('T')[0]
 
+const taskToConfirm = ref<Task | null>(null)
+const confirmType = ref<'delete' | 'complete'>('delete')
+
 const isOverdue = computed(
   () => !props.task.completed && !!props.task.dueDate && props.task.dueDate < today
 )
 
+const taskStore = useTaskStore()
 const authStore = useAuthStore()
 const isAdmin = computed(() => authStore.user?.type === 'admin')
 
 const taskOwner = computed(
   () => MOCK_USERS.find((u) => u.id === props.task.userId)?.name ?? 'Desconhecido'
 )
+
+function askDelete() {
+  confirmType.value = 'delete'
+  taskToConfirm.value = props.task
+}
+
+function askComplete() {
+  confirmType.value = 'complete'
+  taskToConfirm.value = props.task
+}
+
+async function handleConfirm() {
+  if (confirmType.value === 'delete') {
+    await handleDelete()
+  } else {
+    await taskStore.toggleComplete(props.task!.id)
+  }
+  taskToConfirm.value = null
+}
+
+async function handleDelete() {
+  await taskStore.removeTask(props.task.id)
+}
 
 function formatDate(date: string): string {
   return new Date(date + 'T00:00:00').toLocaleDateString('pt-BR', {

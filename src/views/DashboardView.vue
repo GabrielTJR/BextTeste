@@ -5,7 +5,7 @@
     <main class="flex-1 p-6 mx-auto w-full">
       <div class="flex items-center justify-between mb-2">
         <div>
-          <span class="hidden sm:block text-white">{{ authStore.user?.name }}</span>
+          <span class="text-white">{{ authStore.user?.name }}</span>
           <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
         </div>
         <BaseButton variant="primary" size="md" @click="openCreateModal">

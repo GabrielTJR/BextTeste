@@ -1,12 +1,10 @@
 <template>
   <div class="flex flex-col gap-3">
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <h2 class="text-base font-semibold text-dark">{{ categoryMeta[category].label }}</h2>
       </div>
-      <span class="px-2 py-0.5 rounded-full bg-dark text-white text-xs font-mono">
-        {{ tasks.length }}
-      </span>
+      <span class="px-2 py-0.5 text-dark text-xs font-mono"> Total: {{ tasks.length }} </span>
     </div>
 
     <div

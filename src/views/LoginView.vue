@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen bg-background flex justify-between">
-    <div class="w-full h-screen flex justify-center">
+    <div class="hidden w-full h-screen flex justify-center">
       <img src="../../favicon.png" class="w-auto h-screen" />
     </div>
-    <div class="bg-white w-full flex flex-col justify-center h-screen max-w-sm">
+    <div class="bg-white w-full flex flex-col justify-center h-screen md:max-w-sm">
       <div class="text-center mb-4">
         <h1 class="text-2xl font-bold text-dark">Gerenciado de Tarefas</h1>
       </div>

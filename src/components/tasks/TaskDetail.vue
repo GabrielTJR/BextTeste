@@ -51,11 +51,17 @@
             >Cancelar</BaseButton
           >
 
-          <BaseButton variant="danger" size="sm" @click="handleDelete">Excluir</BaseButton>
+          <BaseButton variant="danger" size="sm" @click="askDelete">Excluir</BaseButton>
 
           <BaseButton variant="primary" size="sm" @click="isEditing = true"
             >Editar tarefa</BaseButton
           >
+          <BaseConfirm
+            :task="taskToConfirm"
+            :type="confirmType"
+            @confirm="handleConfirm"
+            @cancel="taskToConfirm = null"
+          />
         </div>
       </div>
     </div>
@@ -74,6 +80,7 @@
 import { ref } from 'vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import PriorityBadge from '@/components/ui/PriorityBadge.vue'
+import BaseConfirm from '../ui/BaseConfirm.vue'
 import TaskForm from '@/components/tasks/TaskForm.vue'
 import { useTaskStore } from '@/stores/tasks'
 import type { Task, Category } from '@/types'
@@ -83,11 +90,16 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{ deleted: [] }>()
+const emit = defineEmits<{
+  deleted: []
+}>()
 
 const taskStore = useTaskStore()
 const isEditing = ref(false)
 const loading = ref(false)
+
+const taskToConfirm = ref<Task | null>(null)
+const confirmType = ref<'delete' | 'complete'>('delete')
 
 const categoryLabel: Record<Category, string> = {
   health: 'Pessoal',
@@ -101,6 +113,20 @@ function formatDate(date: string): string {
     month: 'long',
     year: 'numeric',
   })
+}
+
+function askDelete() {
+  confirmType.value = 'delete'
+  taskToConfirm.value = props.task
+}
+
+async function handleConfirm() {
+  if (confirmType.value === 'delete') {
+    await handleDelete()
+  } else {
+    await taskStore.toggleComplete(props.task!.id)
+  }
+  taskToConfirm.value = null
 }
 
 async function handleUpdate(data: Omit<Task, 'id' | 'createdAt' | 'userId'>) {
