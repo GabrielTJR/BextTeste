@@ -10,7 +10,7 @@
     />
 
     <div class="flex flex-col gap-1">
-      <label class="text-sm font-medium text-dark">Descrição</label>
+      <label class="text-sm font-medium text-white">Descrição</label>
       <textarea
         v-model="form.description"
         placeholder="Detalhes da tarefa..."
@@ -48,9 +48,11 @@
         id="completed-check"
         v-model="form.completed"
         type="checkbox"
-        class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer accent-primary"
+        class="w-4 h-4 rounded border-gray-300 text-white focus:ring-primary cursor-pointer accent-primary"
       />
-      <label for="completed-check" class="text-sm text-dark cursor-pointer">Marcar como concluída</label>
+      <label for="completed-check" class="text-sm text-white cursor-pointer"
+        >Marcar como concluída</label
+      >
     </div>
 
     <div class="flex justify-end gap-3 pt-2">
@@ -128,10 +130,15 @@ const priorityOptions = [
 ]
 
 function validate(): boolean {
-  errors.title = !form.title.trim() ? 'O título é obrigatório' : form.title.length > 60 ? 'O título deve ter no máximo 60 caracteres' : ''
+  errors.title = !form.title.trim()
+    ? 'O título é obrigatório'
+    : form.title.length > 60
+      ? 'O título deve ter no máximo 60 caracteres'
+      : ''
   errors.category = form.category ? '' : 'Selecione uma categoria'
   errors.priority = form.priority ? '' : 'Selecione uma prioridade'
-  errors.dt_conclusao = form.dueDate === '' || form.dueDate > today ? '' : 'Data de conclusão inválida'
+  errors.dt_conclusao =
+    form.dueDate === '' || form.dueDate > today ? '' : 'Data de conclusão inválida'
   return !errors.title && !errors.category && !errors.priority && !errors.dt_conclusao
 }
 

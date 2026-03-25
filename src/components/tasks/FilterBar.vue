@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-left gap-3">
     <div
-      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-xs shadow-black hover:shadow-xl transition-shadow duration-300"
+      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-md shadow-black hover:shadow-white transition-shadow duration-300"
     >
       <h3 class="text-lg p-2">Categoria</h3>
       <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
@@ -22,7 +22,7 @@
     </div>
 
     <div
-      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-xs shadow-black hover:shadow-xl transition-shadow duration-300"
+      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-md shadow-black hover:shadow-white transition-shadow duration-300"
     >
       <h3 class="text-lg p-2">Prioridade</h3>
       <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
@@ -32,8 +32,8 @@
           :class="[
             'px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-150',
             filters.priority === opt.value
-              ? 'bg-primary text-white border-primary'
-              : 'bg-white text-dark border-gray-200 hover:border-primary',
+              ? 'bg-dark text-white border-gray'
+              : 'bg-white text-dark border-gray-200 hover:border-dark',
           ]"
           @click="taskStore.setFilter('priority', opt.value)"
         >

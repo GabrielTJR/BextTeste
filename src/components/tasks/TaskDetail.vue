@@ -1,37 +1,56 @@
 <template>
-  <BaseModal v-model="isOpen" :title="isEditing ? 'Editar Tarefa' : 'Detalhes da Tarefa'" size="md">
-    <div v-if="!isEditing && task">
+  <div v-if="task" class="flex flex-col gap-4 p-3">
+    <div v-if="!isEditing">
       <div class="flex flex-col gap-4">
         <div class="flex items-start justify-between gap-3">
-          <h3 :class="['text-xl font-semibold', task.completed ? 'line-through text-gray-400' : 'text-dark']">
-            {{ task.title }}
+          <h3
+            :class="[
+              'text-xl font-semibold',
+              task.completed ? 'line-through text-gray-400' : 'text-white',
+            ]"
+          >
+            Título: <br />{{ task.title }}
           </h3>
           <PriorityBadge :priority="task.priority" />
         </div>
 
-        <p v-if="task.description" class="text-sm text-gray-600 leading-relaxed break-words line-clamp-3">
-          {{ task.description }}
+        <p v-if="task.description" class="text-sm text-white leading-relaxed break-words">
+          Descrição: <br />{{ task.description }}
         </p>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="p-3 rounded-xl bg-background">
-            <p class="text-xs text-gray-400 mb-1">Categoria</p>
+            <p class="text-xs text-gray mb-1">Categoria</p>
             <p class="text-sm font-medium text-dark">{{ categoryLabel[task.category] }}</p>
           </div>
           <div class="p-3 rounded-xl bg-background">
-            <p class="text-xs text-gray-400 mb-1">Status</p>
-            <p class="text-sm font-medium" :class="task.completed ? 'text-green-600' : 'text-yellow-600'">
+            <p class="text-xs text-gray mb-1">Status</p>
+            <p
+              class="text-sm font-medium"
+              :class="task.completed ? 'text-green-600' : 'text-yellow-600'"
+            >
               {{ task.completed ? 'Concluída' : 'Em andamento' }}
             </p>
           </div>
           <div v-if="task.dueDate" class="p-3 rounded-xl bg-background">
-            <p class="text-xs text-gray-400 mb-1">Prazo</p>
+            <p class="text-xs text-gray mb-1">Prazo</p>
             <p class="text-sm font-medium text-dark font-mono">{{ formatDate(task.dueDate) }}</p>
           </div>
           <div class="p-3 rounded-xl bg-background">
-            <p class="text-xs text-gray-400 mb-1">Criada em</p>
+            <p class="text-xs text-gray mb-1">Criada em</p>
             <p class="text-sm font-medium text-dark font-mono">{{ formatDate(task.createdAt) }}</p>
           </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+          <BaseButton variant="danger" size="sm" @click="handleDelete">Excluir</BaseButton>
+
+          <BaseButton type="button" variant="ghost" size="md" @click="$emit('deleted')"
+            >Cancelar</BaseButton
+          >
+          <BaseButton variant="primary" size="sm" @click="isEditing = true"
+            >Editar tarefa</BaseButton
+          >
         </div>
       </div>
     </div>
@@ -43,24 +62,11 @@
       @submit="handleUpdate"
       @cancel="isEditing = false"
     />
-
-    <template #footer>
-      <div class="flex justify-between items-center">
-        <BaseButton v-if="!isEditing" variant="danger" size="sm" @click="handleDelete">
-          Excluir
-        </BaseButton>
-        <div v-else class="flex-1" />
-        <BaseButton v-if="!isEditing" variant="primary" size="sm" @click="isEditing = true">
-          Editar tarefa
-        </BaseButton>
-      </div>
-    </template>
-  </BaseModal>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import BaseModal from '@/components/ui/BaseModal.vue'
+import { ref } from 'vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import PriorityBadge from '@/components/ui/PriorityBadge.vue'
 import TaskForm from '@/components/tasks/TaskForm.vue'
@@ -68,27 +74,15 @@ import { useTaskStore } from '@/stores/tasks'
 import type { Task, Category } from '@/types'
 
 interface Props {
-  modelValue: boolean
   task: Task | null
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{
-  'update:modelValue': [value: boolean]
-  deleted: []
-}>()
+const emit = defineEmits<{ deleted: [] }>()
 
 const taskStore = useTaskStore()
 const isEditing = ref(false)
 const loading = ref(false)
-
-const isOpen = computed({
-  get: () => props.modelValue,
-  set: (val) => {
-    emit('update:modelValue', val)
-    if (!val) isEditing.value = false
-  },
-})
 
 const categoryLabel: Record<Category, string> = {
   personal: 'Pessoal',
@@ -115,7 +109,6 @@ async function handleUpdate(data: Omit<Task, 'id' | 'createdAt' | 'userId'>) {
 async function handleDelete() {
   if (!props.task) return
   await taskStore.removeTask(props.task.id)
-  isOpen.value = false
   emit('deleted')
 }
 </script>

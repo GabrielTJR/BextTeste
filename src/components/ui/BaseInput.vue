@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-1">
-    <label v-if="label" :for="inputId" class="text-sm font-medium text-dark">
+    <label v-if="label" :for="inputId" class="text-sm font-medium text-white">
       {{ label }}
       <span v-if="required" class="text-red-500 ml-0.5">*</span>
     </label>
@@ -19,12 +19,15 @@
       ]"
     />
     <div v-if="maxlength" class="flex justify-end">
-      <span class="text-xs" :class="modelValue.length >= Number(maxlength) ? 'text-red-400' : 'text-gray-400'">
+      <span
+        class="text-xs"
+        :class="modelValue.length >= Number(maxlength) ? 'text-red-400' : 'text-white'"
+      >
         {{ modelValue.length }}/{{ maxlength }}
       </span>
-    </div>  
+    </div>
     <p v-if="error" class="text-xs text-red-500">{{ error }}</p>
-    <p v-else-if="hint" class="text-xs text-gray-500">{{ hint }}</p>
+    <p v-else-if="hint" class="text-xs text-white">{{ hint }}</p>
   </div>
 </template>
 

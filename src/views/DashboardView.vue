@@ -1,11 +1,11 @@
 <template>
-  <div class="min-h-screen bg-background flex flex-col">
+  <div class="min-h-screen bg-[var(--color-back)] flex flex-col">
     <AppHeader />
 
-    <main class="flex-1 p-8 mx-auto w-full">
-      <div class="flex items-center justify-between mb-6">
+    <main class="flex-1 p-4 mx-auto w-full">
+      <div class="flex items-center justify-between mb-2">
         <div>
-          <h1 class="text-xl font-bold text-black">Minhas Tarefas</h1>
+          <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
           <p class="text-sm text-gray-400 mt-0.5">{{ today }}</p>
         </div>
         <BaseButton variant="primary" size="md" @click="openCreateModal">
@@ -31,7 +31,7 @@
           />
         </div>
         <div
-          v-else
+          v-else-if="showFormModal === false && showDetailModal === false"
           class="grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
         >
           <TaskList
@@ -43,26 +43,27 @@
             @edit="openEditModal"
             @delete="handleDelete"
             @toggle="taskStore.toggleComplete"
-            class="bg-white rounded-xl border border-gray-100 px-4 py-3 mb-6"
+            class="bg-white shadow-md shadow-black hover:shadow-white rounded-xl border border-gray-100 px-4 py-3 mb-6"
+          />
+        </div>
+        <div v-else-if="showFormModal" class="w-full">
+          <TaskForm
+            :task="selectedTask"
+            :loading="taskStore.loading"
+            @submit="handleFormSubmit"
+            @cancel="showFormModal = false"
+            class="gap-6 border-0 border-gray-300 p-3 md:border-t"
+          />
+        </div>
+        <div v-else class="w-full">
+          <TaskDetail
+            :task="selectedTask"
+            @deleted="showDetailModal = false"
+            class="gap-6 border-0 border-gray-300 p-3 md:border-t"
           />
         </div>
       </div>
     </main>
-
-    <BaseModal
-      v-model="showFormModal"
-      :title="selectedTask ? 'Editar Tarefa' : 'Nova Tarefa'"
-      size="md"
-    >
-      <TaskForm
-        :task="selectedTask"
-        :loading="taskStore.loading"
-        @submit="handleFormSubmit"
-        @cancel="showFormModal = false"
-      />
-    </BaseModal>
-
-    <TaskDetail v-model="showDetailModal" :task="selectedTask" @deleted="showDetailModal = false" />
   </div>
 </template>
 
@@ -71,7 +72,6 @@ import { ref, computed, onMounted } from 'vue'
 import { useTaskStore } from '@/stores/tasks'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseModal from '@/components/ui/BaseModal.vue'
 import FilterBar from '@/components/tasks/FilterBar.vue'
 import TaskList from '@/components/tasks/TaskList.vue'
 import TaskForm from '@/components/tasks/TaskForm.vue'

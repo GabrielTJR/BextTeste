@@ -5,7 +5,10 @@
     :class="[baseClasses, variantClasses[variant], sizeClasses[size]]"
     v-bind="$attrs"
   >
-    <span v-if="loading" class="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+    <span
+      v-if="loading"
+      class="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"
+    />
     <slot />
   </button>
 </template>
@@ -38,7 +41,8 @@ const variantClasses: Record<string, string> = {
   primary: 'bg-primary text-white hover:bg-primary-dark active:scale-95',
   secondary: 'bg-dark text-white hover:bg-dark-light active:scale-95',
   danger: 'bg-red-500 text-white hover:bg-red-600 active:scale-95',
-  ghost: 'bg-transparent text-dark border border-dark hover:bg-dark hover:text-white active:scale-95',
+  ghost:
+    'bg-transparent text-white border border-white hover:bg-dark hover:text-white active:scale-95',
 }
 
 const sizeClasses: Record<string, string> = {

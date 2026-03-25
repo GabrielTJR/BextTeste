@@ -46,9 +46,9 @@ defineEmits<{
   toggle: [id: string]
 }>()
 
-const categoryMeta: Record<Category, { label: string}> = {
-  personal: { label: 'Pessoal'},
-  work: { label: 'Trabalho'},
-  study: { label: 'Estudo'},
+const categoryMeta: Record<Category, { label: string }> = {
+  personal: { label: 'Pessoal' },
+  work: { label: 'Trabalho' },
+  study: { label: 'Estudo' },
 }
 </script>

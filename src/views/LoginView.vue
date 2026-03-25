@@ -1,11 +1,14 @@
 <template>
-  <div class="min-h-screen bg-background flex items-center justify-center p-4">
-    <div class="w-full max-w-sm">
+  <div class="min-h-screen bg-background flex justify-between">
+    <div class="w-full h-screen flex justify-center">
+      <img src="../../favicon.png" class="w-auto h-screen" />
+    </div>
+    <div class="bg-white w-full flex flex-col justify-center h-screen max-w-sm">
       <div class="text-center mb-4">
         <h1 class="text-2xl font-bold text-dark">Gerenciado de Tarefas</h1>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div class="w-full shadow-sm p-8">
         <h2 class="text-lg font-semibold text-dark mb-6">Entrar na plataforma</h2>
 
         <form class="flex flex-col gap-4" @submit.prevent="handleLogin">
@@ -29,23 +32,47 @@
               v-if="authStore.error"
               class="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-100 text-red-600 text-sm"
             >
-              <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                class="w-4 h-4 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               {{ authStore.error }}
             </div>
           </Transition>
 
-          <BaseButton type="submit" variant="primary" size="lg" :loading="authStore.loading" class="w-full mt-2">
+          <BaseButton
+            type="submit"
+            variant="primary"
+            size="lg"
+            :loading="authStore.loading"
+            class="w-full mt-2"
+          >
             Entrar
           </BaseButton>
         </form>
 
-        <div class="mt-6 p-3 rounded-lg bg-background border border-gray-100 text-xs text-gray-500 space-y-0.5">
+        <div
+          class="mt-6 p-3 rounded-lg bg-background border border-gray-100 text-xs text-gray-500 space-y-0.5"
+        >
           <p class="font-medium text-dark text-xs mb-1">Credenciais de teste:</p>
-          <p><span class="font-mono">gabriel@bext.vc</span> / <span class="font-mono">123456</span></p>
-          <p><span class="font-mono">user2@bext.vc</span> / <span class="font-mono">123456</span></p>
-          <p><span class="font-mono">admin@bext.vc</span> / <span class="font-mono">admin123</span></p>
+          <p>
+            <span class="font-mono">gabriel@bext.vc</span> / <span class="font-mono">123456</span>
+          </p>
+          <p>
+            <span class="font-mono">user2@bext.vc</span> / <span class="font-mono">123456</span>
+          </p>
+          <p>
+            <span class="font-mono">admin@bext.vc</span> / <span class="font-mono">admin123</span>
+          </p>
         </div>
       </div>
     </div>
