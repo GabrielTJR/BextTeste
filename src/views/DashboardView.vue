@@ -35,7 +35,7 @@
         </div>
         <div
           v-else
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
+          class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
         >
           <TaskList
             v-for="cat in filteredCategories"
@@ -46,7 +46,7 @@
             @edit="openEditModal"
             @delete="handleDelete"
             @toggle="taskStore.toggleComplete"
-            class="bg-white shadow-md shadow-black hover:shadow-white rounded-xl border border-gray-100 px-4 py-3 mb-6"
+            class="bg-white shadow-md shadow-black hover:shadow-white rounded-xl border border-gray-100 px-4 py-3 mb-6 md:min-w-1/3"
           />
         </div>
       </div>
