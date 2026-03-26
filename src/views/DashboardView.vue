@@ -2,30 +2,23 @@
   <div class="min-h-screen bg-[var(--color-back)] flex flex-col">
     <AppHeader />
 
-    <main class="flex-1 p-6 mx-auto w-full">
-      <div class="flex items-center justify-between mb-2">
-        <div>
-          <span class="text-white">{{ authStore.user?.name }}</span>
-          <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
-        </div>
-        <BaseButton variant="primary" size="md" @click="openCreateModal">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Nova tarefa
-        </BaseButton>
-      </div>
-
+    <main class="flex-1 mx-auto w-full">
       <div
         v-if="showFormModal === false && showDetailModal === false"
         class="flex flex-col md:flex-row"
       >
-        <div class="border-0 border-gray-300 p-3 md:border-t md:border-r">
+        <div class="border-0 pt-4 border-gray-300 w-1/6 p-3 md:border-t md:border-r">
+          <BaseButton variant="primary" size="md" @click="openCreateModal">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Nova tarefa
+          </BaseButton>
           <FilterBar />
         </div>
         <div v-if="taskStore.loading" class="flex justify-center py-20">
@@ -35,8 +28,12 @@
         </div>
         <div
           v-else
-          class="w-full flex flex-col md:grid-cols-3 gap-6 border-0 border-gray-300 p-3 md:border-t"
+          class="w-full flex flex-col md:grid-cols-3 gap-3 border-0 border-gray-300 p-3 md:border-t"
         >
+          <div>
+            <span class="text-white">{{ authStore.user?.name }}</span>
+            <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
+          </div>
           <TaskList
             v-for="cat in filteredCategories"
             :key="cat"
@@ -46,25 +43,21 @@
             @edit="openEditModal"
             @delete="handleDelete"
             @toggle="taskStore.toggleComplete"
-            class="bg-white shadow-md shadow-black hover:shadow-white rounded-xl border border-gray-100 px-4 py-3 mb-6 md:min-w-1/3"
+            class="px-4 py-3 mb-6 md:min-w-1/3"
           />
         </div>
       </div>
-      <div v-else-if="showFormModal" class="flex justify-center w-full">
+      <div v-else-if="showFormModal" class="flex pt-8 p-3 justify-center w-full">
         <TaskForm
           :task="selectedTask"
           :loading="taskStore.loading"
           @submit="handleFormSubmit"
           @cancel="showFormModal = false"
-          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-1/3"
+          class="gap-6 w-1/3"
         />
       </div>
-      <div v-else class="flex justify-center w-full">
-        <TaskDetail
-          :task="selectedTask"
-          @deleted="showDetailModal = false"
-          class="gap-6 border-0 border-gray-300 p-3 md:border-t w-1/3"
-        />
+      <div v-else class="flex pt-8 justify-center w-full">
+        <TaskDetail :task="selectedTask" @deleted="showDetailModal = false" class="gap-6 w-1/3" />
       </div>
     </main>
   </div>

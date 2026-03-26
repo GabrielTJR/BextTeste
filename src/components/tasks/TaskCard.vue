@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group bg-[var(--color-back)] rounded-xl border border-gray-200 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
+    class="group bg-[var(--color-back-card)] rounded-xl border border-gray-200 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
     :class="{
       'opacity-85': task.completed,
     }"

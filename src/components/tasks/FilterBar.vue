@@ -1,45 +1,36 @@
 <template>
   <div class="flex flex-col items-left gap-3">
-    <div
-      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-md shadow-black hover:shadow-white transition-shadow duration-300"
-    >
-      <h3 class="text-lg p-2">Categoria</h3>
-      <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
-        <button
-          v-for="opt in categoryOptions"
-          :key="opt.value"
-          :class="[
-            'px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-150',
-            filters.category === opt.value
-              ? 'bg-dark text-white border-dark'
-              : 'bg-white text-dark border-gray-200 hover:border-dark',
-          ]"
-          @click="taskStore.setFilter('category', opt.value)"
-        >
-          {{ opt.label }}
-        </button>
-      </div>
+    <h3 class="text-lg p-2 text-gray-500">Categoria</h3>
+    <div class="flex flex-row items-left gap-2 flex-wrap mb-6 md:flex-col">
+      <button
+        v-for="opt in categoryOptions"
+        :key="opt.value"
+        :class="[
+          'px-3 py-1.5 text-sm font-bold rounded-xl transition-all duration-150',
+          filters.category === opt.value
+            ? 'bg-[var(--color-back-card)] text-white border-dark'
+            : 'bg-none text-gray-500 border-gray-200 hover:border-dark',
+        ]"
+        @click="taskStore.setFilter('category', opt.value)"
+      >
+        {{ opt.label }}
+      </button>
     </div>
-
-    <div
-      class="bg-white rounded-xl border border-gray-100 px-4 py-3 shadow-md shadow-black hover:shadow-white transition-shadow duration-300"
-    >
-      <h3 class="text-lg p-2">Prioridade</h3>
-      <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
-        <button
-          v-for="opt in priorityOptions"
-          :key="opt.value"
-          :class="[
-            'px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-150',
-            filters.priority === opt.value
-              ? 'bg-dark text-white border-gray'
-              : 'bg-white text-dark border-gray-200 hover:border-dark',
-          ]"
-          @click="taskStore.setFilter('priority', opt.value)"
-        >
-          {{ opt.label }}
-        </button>
-      </div>
+    <h3 class="text-lg text-gray-500 p-2">Prioridade</h3>
+    <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
+      <button
+        v-for="opt in priorityOptions"
+        :key="opt.value"
+        :class="[
+          'px-3 py-1.5 text-sm font-bold rounded-xl transition-all duration-150',
+          filters.priority === opt.value
+            ? 'bg-[var(--color-back-card)] text-white border-dark'
+            : 'bg-none text-gray-500 border-gray-200 hover:border-dark',
+        ]"
+        @click="taskStore.setFilter('priority', opt.value)"
+      >
+        {{ opt.label }}
+      </button>
     </div>
 
     <button
@@ -60,7 +51,7 @@ const taskStore = useTaskStore()
 const { filters } = storeToRefs(taskStore)
 
 const categoryOptions = [
-  { value: 'all', label: 'Todos' },
+  { value: 'all', label: 'Todas' },
   { value: 'health', label: 'Saúde' },
   { value: 'work', label: 'Trabalho' },
   { value: 'study', label: 'Estudo' },
