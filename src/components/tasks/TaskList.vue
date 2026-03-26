@@ -12,7 +12,7 @@
       v-if="tasks.length === 0"
       class="flex flex-col items-center justify-center py-8 rounded-xl border-2 border-dashed border-gray-200 text-center"
     >
-      <p class="text-sm text-gray-400">Nenhuma tarefa nesta categoria</p>
+      <p class="text-sm text-gray-400">Nenhuma tarefa nesta categoria/prioridade</p>
     </div>
 
     <TransitionGroup name="slide-up" tag="div" class="flex flex-col gap-2">
