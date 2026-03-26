@@ -7,7 +7,9 @@
         v-if="showFormModal === false && showDetailModal === false"
         class="flex flex-col md:flex-row"
       >
-        <div class="border-0 pt-4 border-gray-300 w-1/6 p-3 md:border-t md:border-r">
+        <div
+          class="flex flex-col border-0 pt-4 border-gray-300 w-full md:w-1/6 p-3 md:border-t md:border-r"
+        >
           <BaseButton variant="primary" size="md" @click="openCreateModal">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
@@ -37,6 +39,7 @@
           <TaskList
             v-for="cat in filteredCategories"
             :key="cat"
+            :priority="taskStore.filters.priority"
             :category="cat"
             :tasks="taskStore.tasksByCategory[cat]"
             @view="openDetailModal"
@@ -53,11 +56,15 @@
           :loading="taskStore.loading"
           @submit="handleFormSubmit"
           @cancel="showFormModal = false"
-          class="gap-6 w-1/3"
+          class="gap-6 w-3/4 md:w-1/3"
         />
       </div>
       <div v-else class="flex pt-8 justify-center w-full">
-        <TaskDetail :task="selectedTask" @deleted="showDetailModal = false" class="gap-6 w-1/3" />
+        <TaskDetail
+          :task="selectedTask"
+          @deleted="showDetailModal = false"
+          class="gap-6 w-3/4 md:w-1/3"
+        />
       </div>
     </main>
   </div>

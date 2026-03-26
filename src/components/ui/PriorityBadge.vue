@@ -15,12 +15,14 @@ import type { Priority } from '@/types'
 defineProps<{ priority: Priority }>()
 
 const labels: Record<Priority, string> = {
+  all: 'Todas',
   low: 'Baixa',
   medium: 'Média',
   high: 'Alta',
 }
 
 const classes: Record<Priority, string> = {
+  all: 'Todas',
   low: 'bg-green-100 text-green-700',
   medium: 'bg-yellow-100 text-yellow-700',
   high: 'bg-red-100 text-red-700',

@@ -3,6 +3,7 @@
     <div class="flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <h2 class="text-base font-semibold text-white">{{ categoryMeta[category].label }}</h2>
+        <PriorityBadge v-if="priority !== 'all'" :priority="priority" />
       </div>
       <span class="px-2 py-0.5 text-white text-xs font-mono"> Total: {{ tasks.length }} </span>
     </div>
@@ -29,10 +30,12 @@
 </template>
 
 <script setup lang="ts">
+import PriorityBadge from '../ui/PriorityBadge.vue'
 import TaskCard from './TaskCard.vue'
-import type { Task, Category } from '@/types'
+import type { Task, Category, Priority } from '@/types'
 
 defineProps<{
+  priority: Priority | 'all'
   category: Category
   tasks: Task[]
 }>()

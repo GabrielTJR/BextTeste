@@ -1,4 +1,4 @@
-export type Priority = 'low' | 'medium' | 'high'
+export type Priority = 'low' | 'medium' | 'high' | 'all'
 export type Category = 'health' | 'work' | 'study' | 'all'
 export type TypeUser = 'user' | 'admin'
 
@@ -24,5 +24,5 @@ export interface User {
 
 export interface FilterState {
   category: Category
-  priority: Priority | 'all'
+  priority: Priority
 }
