@@ -5,7 +5,7 @@
         <h2 class="text-base font-semibold text-white">{{ categoryMeta[category].label }}</h2>
         <PriorityBadge v-if="priority !== 'all'" :priority="priority" />
       </div>
-      <div class="flex items-center bg-secondary/50 rounded-lg p-1">
+      <div class="flex hidden md:flex items-center bg-secondary/50 rounded-lg p-1">
         <button
           @click="showMode = 'list'"
           class="w-8 h-8 rounded-md flex items-center justify-center transition-all duration-200 bg-card text-foreground shadow-sm"
@@ -70,7 +70,11 @@
     <TransitionGroup
       name="slide-up"
       tag="div"
-      :class="showMode === 'list' ? 'flex flex-col gap-2' : 'grid grid-cols-3 gap-3'"
+      :class="
+        showMode === 'list'
+          ? 'flex flex-col gap-2'
+          : 'flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-3'
+      "
     >
       <TaskCard
         v-for="task in tasks"

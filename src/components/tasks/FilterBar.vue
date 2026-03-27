@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-left gap-3">
-    <h3 class="text-lg p-2 text-gray-500">Categoria</h3>
+    <h3 class="text-lg p-2 text-white">Categoria</h3>
     <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
       <button
         v-for="opt in categoryOptions"
@@ -16,7 +16,7 @@
         {{ opt.label }}
       </button>
     </div>
-    <h3 class="text-lg text-gray-500 p-2">Prioridade</h3>
+    <h3 class="text-lg text-white p-2">Prioridade</h3>
     <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
       <button
         v-for="opt in priorityOptions"
