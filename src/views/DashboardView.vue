@@ -8,7 +8,7 @@
         class="flex flex-col md:flex-row"
       >
         <div
-          class="flex flex-col border-0 pt-4 border-gray-300 w-full md:w-1/6 p-3 md:border-t md:border-r"
+          class="flex flex-col border-0 pt-4 border-gray-500 w-full md:w-1/6 p-3 md:border-t md:border-r"
         >
           <BaseButton variant="primary" size="md" @click="openCreateModal">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,7 +30,7 @@
         </div>
         <div
           v-else
-          class="w-full flex flex-col md:grid-cols-3 gap-3 border-0 border-gray-300 p-3 md:border-t"
+          class="w-full flex flex-col md:grid-cols-3 gap-3 border-0 border-gray-500 p-3 md:border-t"
         >
           <div>
             <span class="text-white">{{ authStore.user?.name }}</span>

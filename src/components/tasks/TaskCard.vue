@@ -90,7 +90,7 @@
 
       <div class="footer flex items-center justify-between">
         <div class="flex flex-col w-full justify-start gap-0.5">
-          <PriorityBadge :priority="task.priority" />
+          <PriorityBadge class="w-max" :priority="task.priority" />
           <span v-if="isAdmin" class="text-xs text-white italic"> Usuário: {{ taskOwner }} </span>
           <span
             v-if="task.dueDate"
