@@ -6,7 +6,7 @@
     }"
     @click="$emit('view', task)"
   >
-    <div class="p-4">
+    <div class="p-4 h-full flex flex-col justify-between">
       <div class="flex items-start justify-between gap-2 mb-2">
         <div class="flex items-start gap-2 min-w-0">
           <h3

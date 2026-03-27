@@ -7,7 +7,7 @@
       </div>
       <div class="flex hidden md:flex items-center bg-secondary/50 rounded-lg p-1">
         <button
-          @click="showMode = 'list'"
+          @click="$emit('changeMode', 'list')"
           class="w-8 h-8 rounded-md flex items-center justify-center transition-all duration-200 bg-card text-foreground shadow-sm"
           :class="showMode === 'list' ? 'bg-[var(--color-back-card)] text-white border-dark' : ''"
         >
@@ -32,9 +32,9 @@
             <path d="M8 19h13"></path>
           </svg></button
         ><button
-          @click="showMode = 'column'"
+          @click="$emit('changeMode', 'grid')"
           class="w-8 h-8 rounded-md flex items-center justify-center transition-all duration-200 text-muted-foreground hover:text-foreground"
-          :class="showMode === 'column' ? 'bg-[var(--color-back-card)] text-white border-dark' : ''"
+          :class="showMode === 'grid' ? 'bg-[var(--color-back-card)] text-white border-dark' : ''"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import PriorityBadge from '../ui/PriorityBadge.vue'
 import TaskCard from './TaskCard.vue'
 import type { Task, Category, Priority, ShowMode } from '@/types'
@@ -99,6 +98,7 @@ defineProps<{
   priority: Priority | 'all'
   category: Category
   tasks: Task[]
+  showMode: ShowMode
 }>()
 
 defineEmits<{
@@ -106,9 +106,8 @@ defineEmits<{
   edit: [task: Task]
   delete: [id: string]
   toggle: [id: string]
+  changeMode: [value: ShowMode]
 }>()
-
-const showMode = ref<ShowMode>('list')
 
 const categoryMeta: Record<Category, { label: string }> = {
   all: { label: 'Todas' },

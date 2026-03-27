@@ -7,7 +7,7 @@
         <div
           class="flex flex-col border-0 pt-4 border-gray-500 w-full md:w-1/6 p-3 md:border-t md:border-r"
         >
-          <BaseButton variant="primary" size="md" @click="openCreateModal">
+          <BaseButton class="mb-4" variant="primary" size="md" @click="openCreateModal">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
@@ -25,10 +25,7 @@
             class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"
           />
         </div>
-        <div
-          v-else
-          class="w-full flex flex-col md:grid-cols-3 gap-3 border-0 border-gray-500 p-3 md:border-t"
-        >
+        <div v-else class="w-full flex flex-col gap-3 border-0 border-gray-500 p-3 md:border-t">
           <div>
             <span class="text-white">{{ authStore.user?.name }}</span>
             <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
@@ -43,6 +40,8 @@
             @edit="openEditModal"
             @delete="handleDelete"
             @toggle="taskStore.toggleComplete"
+            :showMode="showMode"
+            @changeMode="showMode = $event"
             class="px-4 py-3 mb-6 md:min-w-1/3"
           />
         </div>
@@ -87,11 +86,12 @@ import TaskList from '@/components/tasks/TaskList.vue'
 import TaskForm from '@/components/tasks/TaskForm.vue'
 import TaskDetail from '@/components/tasks/TaskDetail.vue'
 import BaseShow from '@/components/ui/BaseShow.vue'
-import type { Task, Category } from '@/types'
+import type { Task, Category, ShowMode } from '@/types'
 
 const authStore = useAuthStore()
 const taskStore = useTaskStore()
 const categories: Category[] = ['all', 'health', 'work', 'study']
+const showMode = ref<ShowMode>('list')
 
 const showFormModal = ref(false)
 const showDetailModal = ref(false)
