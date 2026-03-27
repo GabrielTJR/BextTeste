@@ -3,10 +3,7 @@
     <AppHeader />
 
     <main class="flex-1 mx-auto w-full">
-      <div
-        v-if="showFormModal === false && showDetailModal === false"
-        class="flex flex-col md:flex-row"
-      >
+      <div class="flex flex-col md:flex-row">
         <div
           class="flex flex-col border-0 pt-4 border-gray-500 w-full md:w-1/6 p-3 md:border-t md:border-r"
         >
@@ -50,23 +47,32 @@
           />
         </div>
       </div>
-      <div v-else-if="showFormModal" class="flex pt-8 p-3 justify-center w-full">
-        <TaskForm
-          :task="selectedTask"
-          :loading="taskStore.loading"
-          @submit="handleFormSubmit"
-          @cancel="showFormModal = false"
-          class="gap-6 w-3/4 md:w-1/3"
-        />
-      </div>
-      <div v-else class="flex pt-8 justify-center w-full">
-        <TaskDetail
-          :task="selectedTask"
-          @deleted="showDetailModal = false"
-          class="gap-6 w-3/4 md:w-1/3"
-        />
-      </div>
     </main>
+
+    <BaseShow
+      v-model="showFormModal"
+      :title="selectedTask ? 'Editar Tarefa' : 'Nova Tarefa'"
+      size="md"
+    >
+      <TaskForm
+        :task="selectedTask"
+        :loading="taskStore.loading"
+        @submit="handleFormSubmit"
+        @cancel="showFormModal = false"
+      />
+    </BaseShow>
+    <BaseShow
+      v-model="showDetailModal"
+      :title="isEditingDetail ? 'Editar tarefa' : 'Detalhes Tarefa'"
+      size="md"
+    >
+      <TaskDetail
+        v-model="showDetailModal"
+        :task="selectedTask"
+        @deleted="showDetailModal = false"
+        @editing="isEditingDetail = $event"
+      />
+    </BaseShow>
   </div>
 </template>
 
@@ -80,6 +86,7 @@ import FilterBar from '@/components/tasks/FilterBar.vue'
 import TaskList from '@/components/tasks/TaskList.vue'
 import TaskForm from '@/components/tasks/TaskForm.vue'
 import TaskDetail from '@/components/tasks/TaskDetail.vue'
+import BaseShow from '@/components/ui/BaseShow.vue'
 import type { Task, Category } from '@/types'
 
 const authStore = useAuthStore()
@@ -89,6 +96,7 @@ const categories: Category[] = ['all', 'health', 'work', 'study']
 const showFormModal = ref(false)
 const showDetailModal = ref(false)
 const selectedTask = ref<Task | null>(null)
+const isEditingDetail = ref(false)
 
 const today = computed(() =>
   new Date().toLocaleDateString('pt-BR', {

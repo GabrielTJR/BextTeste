@@ -2,23 +2,23 @@
   <div v-if="task" class="flex flex-col gap-4 p-3">
     <div v-if="!isEditing">
       <div class="flex flex-col gap-4">
-        <div class="flex items-start text-white flex-col gap-1">
+        <div class="flex items-start text-black flex-col gap-1">
           <p>Título:</p>
           <h3
             :class="[
               'text-xl font-semibold',
-              task.completed ? 'line-through text-gray-400' : 'text-white',
+              task.completed ? 'line-through text-gray-400' : 'text-black',
             ]"
           >
             {{ task.title }}
           </h3>
         </div>
 
-        <div class="flex flex-col text-white gap-1">
+        <div class="flex flex-col text-black gap-1">
           <p>Prioridade:</p>
-          <PriorityBadge :priority="task.priority" />
+          <PriorityBadge class="w-max" :priority="task.priority" />
         </div>
-        <p v-if="task.description" class="text-sm text-white leading-relaxed break-words">
+        <p v-if="task.description" class="text-sm text-black leading-relaxed break-words">
           Descrição: <br />{{ task.description }}
         </p>
 
@@ -53,7 +53,15 @@
 
           <BaseButton variant="danger" size="sm" @click="askDelete">Excluir</BaseButton>
 
-          <BaseButton variant="primary" size="sm" @click="isEditing = true"
+          <BaseButton
+            variant="primary"
+            size="sm"
+            @click="
+              () => {
+                isEditing = true
+                emit('editing', true)
+              }
+            "
             >Editar tarefa</BaseButton
           >
           <BaseConfirm
@@ -71,7 +79,12 @@
       :task="task"
       :loading="loading"
       @submit="handleUpdate"
-      @cancel="isEditing = false"
+      @cancel="
+        () => {
+          isEditing = false
+          emit('editing', false)
+        }
+      "
     />
   </div>
 </template>
@@ -92,6 +105,7 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits<{
   deleted: []
+  editing: [value: boolean]
 }>()
 
 const taskStore = useTaskStore()
