@@ -4,7 +4,6 @@
     :class="{
       'opacity-50 border-green-500': task.completed,
     }"
-    @click="$emit('view', task)"
   >
     <div class="p-4">
       <div class="flex items-start justify-between gap-2 mb-2">
@@ -58,6 +57,7 @@
           </button>
           <button
             class="rounded text-white hover:text-green-500 hover:bg-green-50 hover:text-green-500 transition-colors"
+            :title="task.completed ? 'Reabrir' : 'Concluir'"
             @click.stop="askComplete"
           >
             <svg
@@ -89,7 +89,7 @@
       </p>
 
       <div class="footer flex items-center justify-between">
-        <div class="flex flex-col w-full justify-start gap-0.5">
+        <div class="flex flex-row w-full justify-between gap-0.5">
           <PriorityBadge class="w-max" :priority="task.priority" />
           <span v-if="isAdmin" class="text-xs text-white italic"> Usuário: {{ taskOwner }} </span>
           <span
