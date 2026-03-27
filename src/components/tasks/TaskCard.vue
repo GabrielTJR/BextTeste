@@ -4,6 +4,7 @@
     :class="{
       'opacity-50 border-green-500': task.completed,
     }"
+    @click="$emit('view', task)"
   >
     <div class="p-4">
       <div class="flex items-start justify-between gap-2 mb-2">

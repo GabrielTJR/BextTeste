@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col items-left gap-3">
     <h3 class="text-lg p-2 text-gray-500">Categoria</h3>
-    <div class="flex flex-row items-left gap-2 flex-wrap mb-6 md:flex-col">
+    <div class="flex flex-row items-left gap-1 flex-wrap mb-6 md:flex-col">
       <button
         v-for="opt in categoryOptions"
         :key="opt.value"
         :class="[
           'px-3 py-1.5 text-sm font-bold rounded-xl transition-all duration-150',
           filters.category === opt.value
-            ? 'bg-[var(--color-back-card)] text-white border-dark'
-            : 'bg-none text-gray-500 border-gray-200 hover:border-dark',
+            ? 'bg-[var(--color-back-card)] text-white border border-gray-200'
+            : 'bg-none text-gray-500 border border-transparent hover:border-gray-200',
         ]"
         @click="taskStore.setFilter('category', opt.value)"
       >
@@ -24,8 +24,8 @@
         :class="[
           'px-3 py-1.5 text-sm font-bold rounded-xl transition-all duration-150',
           filters.priority === opt.value
-            ? 'bg-[var(--color-back-card)] text-white border-dark'
-            : 'bg-none text-gray-500 border-gray-200 hover:border-dark',
+            ? 'bg-[var(--color-back-card)] text-white border border-gray-200'
+            : 'bg-none text-gray-500 border border-transparent hover:border-gray-200',
         ]"
         @click="taskStore.setFilter('priority', opt.value)"
       >
