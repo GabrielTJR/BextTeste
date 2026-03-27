@@ -1,6 +1,7 @@
 export type Priority = 'low' | 'medium' | 'high' | 'all'
 export type Category = 'health' | 'work' | 'study' | 'all'
 export type TypeUser = 'user' | 'admin'
+export type ShowMode = 'list' | 'column'
 
 export interface Task {
   id: string
