@@ -7,15 +7,17 @@
     <input
       :id="inputId"
       v-model="model"
+      v-bind="$attrs"
       :type="type"
       :placeholder="placeholder"
       :required="required"
       :disabled="disabled"
       class="shadow-white shadow-sm"
       :class="[
-        'w-full px-3 py-2 text-sm bg-white border rounded-lg transition-all duration-200',
+        'w-full px-3 py-2 text-sm border rounded-lg transition-all duration-200',
         'placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed',
         error ? 'border-red-400' : 'border-gray-300',
+        inputClass,
       ]"
     />
     <div v-if="maxlength" class="flex justify-end">
@@ -42,10 +44,15 @@ interface Props {
   required?: boolean
   disabled?: boolean
   error?: string
+  inputClass?: string
   hint?: string
   id?: string
   maxlength?: string | number
 }
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',

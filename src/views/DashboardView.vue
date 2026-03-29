@@ -26,9 +26,17 @@
           />
         </div>
         <div v-else class="w-full flex flex-col gap-3 border-0 border-gray-500 p-3 md:border-t">
-          <div>
-            <span class="text-white">{{ authStore.user?.name }}</span>
-            <h1 class="text-xl font-bold text-white">Minhas Tarefas</h1>
+          <div class="flex flex-row justify-between items-center">
+            <h1 class="text-xl font-bold text-white w-1/4">Minhas Tarefas</h1>
+            <div class="w-1/2 justify-center">
+              <BaseInput
+                v-model="taskStore.search"
+                type="text"
+                placeholder="Filtrar tarefa"
+                inputClass="bg-[var(--color-back-card)] text-white"
+              />
+            </div>
+            <span class="text-white w-1/4 text-end">{{ authStore.user?.name }}</span>
           </div>
           <TaskList
             v-for="cat in filteredCategories"
@@ -87,12 +95,12 @@ import TaskForm from '@/components/tasks/TaskForm.vue'
 import TaskDetail from '@/components/tasks/TaskDetail.vue'
 import BaseShow from '@/components/ui/BaseShow.vue'
 import type { Task, Category, ShowMode } from '@/types'
+import BaseInput from '@/components/ui/BaseInput.vue'
 
 const authStore = useAuthStore()
 const taskStore = useTaskStore()
 const categories: Category[] = ['all', 'health', 'work', 'study']
 const showMode = ref<ShowMode>('list')
-
 const showFormModal = ref(false)
 const showDetailModal = ref(false)
 const selectedTask = ref<Task | null>(null)

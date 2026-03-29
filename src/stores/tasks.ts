@@ -8,6 +8,7 @@ export const useTaskStore = defineStore('tasks', () => {
   const tasks = ref<Task[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const search = ref<string>('')
 
   const filters = ref<FilterState>({
     category: 'all',
@@ -27,7 +28,10 @@ export const useTaskStore = defineStore('tasks', () => {
         filters.value.category === 'all' || task.category === filters.value.category
       const matchPriority =
         filters.value.priority === 'all' || task.priority === filters.value.priority
-      return matchCategory && matchPriority
+      const matchSearch =
+        !search.value || task.title.toLowerCase().includes(search.value.toLowerCase())
+
+      return matchCategory && matchPriority && matchSearch
     })
   })
 
@@ -105,6 +109,7 @@ export const useTaskStore = defineStore('tasks', () => {
     tasks,
     loading,
     error,
+    search,
     filters,
     userTasks,
     filteredTasks,
