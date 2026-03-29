@@ -20,7 +20,6 @@
 }
 
 body {
-  background-color: var(--color-bg);
   color: var(--color-black);
   font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;

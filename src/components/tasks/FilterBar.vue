@@ -34,7 +34,7 @@
     </div>
 
     <button
-      v-if="filters.category !== 'all' || filters.priority !== 'all'"
+      v-if="filters.category !== 'all' || filters.priority !== 'all' || taskStore.search !== ''"
       class="ml-auto text-xs text-gray-400 hover:text-red-500 transition-colors underline"
       @click="taskStore.resetFilters"
     >

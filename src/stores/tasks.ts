@@ -103,6 +103,7 @@ export const useTaskStore = defineStore('tasks', () => {
 
   function resetFilters() {
     filters.value = { category: 'all', priority: 'all' }
+    search.value = ''
   }
 
   return {
