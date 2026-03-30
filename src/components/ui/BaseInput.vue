@@ -4,21 +4,27 @@
       {{ label }}
       <span v-if="required" class="text-red-500 ml-0.5">*</span>
     </label>
-    <input
-      :id="inputId"
-      v-model="model"
-      v-bind="$attrs"
-      :type="type"
-      :placeholder="placeholder"
-      :required="required"
-      :disabled="disabled"
-      class="shadow-white shadow-sm"
-      :class="[
-        'w-full px-3 py-2 text-sm border rounded-lg placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed',
-        error ? 'border-red-400' : 'border-gray-300',
-        inputClass,
-      ]"
-    />
+    <div class="relative">
+      <input
+        :id="inputId"
+        v-model="model"
+        v-bind="$attrs"
+        :type="type"
+        :placeholder="placeholder"
+        :required="required"
+        :disabled="disabled"
+        class="w-full px-3 py-2 text-sm border rounded-lg"
+        :class="[
+          'placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed',
+          error ? 'border-red-400' : 'border-gray-300',
+          inputClass,
+          { 'pr-10': icon },
+        ]"
+      />
+      <div v-if="icon" class="absolute right-3 top-1/2 -translate-y-1/2">
+        <slot name="icon"></slot>
+      </div>
+    </div>
     <div v-if="maxlength" class="flex justify-end">
       <span
         class="text-xs"
@@ -33,10 +39,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 interface Props {
   modelValue: string
+  icon?: boolean
   label?: string
   type?: string
   placeholder?: string
@@ -56,7 +63,6 @@ defineOptions({
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 })
-
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
 const model = computed({

@@ -28,13 +28,30 @@
         <div v-else class="w-full flex flex-col gap-3 border-0 border-gray-500 p-3 md:border-t">
           <div class="flex flex-row justify-between items-center">
             <h1 class="text-xl font-bold text-white w-1/4">Minhas Tarefas</h1>
-            <div class="w-1/2 justify-center">
+            <div class="w-1/2 justify-center flex flex-row items-center">
               <BaseInput
                 v-model="taskStore.search"
                 type="text"
+                :icon="true"
                 placeholder="Filtrar tarefa"
                 inputClass="bg-[var(--color-back-card)] text-white"
-              />
+                ><template #icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="24"
+                    height="24"
+                    class="text-white"
+                    viewBox="0 0 30 30"
+                  >
+                    <path
+                      d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </template>
+              </BaseInput>
             </div>
             <span class="text-white w-1/4 text-end">{{ authStore.user?.name }}</span>
           </div>
