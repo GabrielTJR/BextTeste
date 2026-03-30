@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-3">
-    <div class="flex items-center justify-between gap-3">
+  <div class="flex flex-col gap-3 h-full min-h-0">
+    <div class="flex items-center justify-between gap-3 p-2 pb-0">
       <div class="flex items-center gap-2">
         <h2 class="text-base font-semibold text-white">{{ categoryMeta[category].label }}</h2>
         <PriorityBadge v-if="priority !== 'all'" :priority="priority" />
@@ -67,25 +67,29 @@
       <p class="text-sm text-gray-400">Nenhuma tarefa nesta categoria/prioridade</p>
     </div>
 
-    <TransitionGroup
-      name="slide-up"
-      tag="div"
-      :class="
-        showMode === 'list'
-          ? 'flex flex-col gap-2'
-          : 'flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-3'
-      "
-    >
-      <TaskCard
-        v-for="task in tasks"
-        :key="task.id"
-        :task="task"
-        @view="$emit('view', $event)"
-        @edit="$emit('edit', $event)"
-        @delete="$emit('delete', $event)"
-        @toggle="$emit('toggle', $event)"
-      />
-    </TransitionGroup>
+    <div class="flex-1 min-h-0 overflow-y-auto">
+      <div class="px-4 pb-3 pt-1">
+        <TransitionGroup
+          name="slide-up"
+          tag="div"
+          :class="
+            showMode === 'list'
+              ? 'flex flex-col gap-2'
+              : 'flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-3'
+          "
+        >
+          <TaskCard
+            v-for="task in tasks"
+            :key="task.id"
+            :task="task"
+            @view="$emit('view', $event)"
+            @edit="$emit('edit', $event)"
+            @delete="$emit('delete', $event)"
+            @toggle="$emit('toggle', $event)"
+          />
+        </TransitionGroup>
+      </div>
+    </div>
   </div>
 </template>
 

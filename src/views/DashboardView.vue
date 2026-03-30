@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen bg-[var(--color-back)] flex flex-col">
+  <div class="h-screen bg-[var(--color-back)] flex flex-col">
     <AppHeader />
 
-    <main class="flex-1 mx-auto w-full">
-      <div class="flex flex-col md:flex-row">
+    <main class="flex-1 mx-auto w-full min-h-0 flex flex-col">
+      <div class="flex flex-col md:flex-row flex-1 min-h-0">
         <div
           class="flex flex-col border-0 pt-4 border-gray-500 w-full md:w-1/6 p-3 md:border-t md:border-r"
         >
@@ -20,13 +20,17 @@
           </BaseButton>
           <FilterBar />
         </div>
+
         <div v-if="taskStore.loading" class="flex justify-center py-20">
           <span
             class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"
           />
         </div>
-        <div v-else class="w-full flex flex-col gap-3 border-0 border-gray-500 p-3 md:border-t">
-          <div class="flex flex-row justify-between items-center">
+        <div
+          v-else
+          class="w-full flex flex-col gap-3 border-0 border-gray-500 md:border-t min-h-0 h-full flex-1 min-h-0"
+        >
+          <div class="flex flex-row justify-between items-center p-3">
             <h1 class="text-xl font-bold text-white w-1/4">Minhas Tarefas</h1>
             <div class="w-1/2 justify-center flex flex-row items-center">
               <BaseInput
@@ -67,7 +71,7 @@
             @toggle="taskStore.toggleComplete"
             :showMode="showMode"
             @changeMode="showMode = $event"
-            class="px-4 py-3 mb-6 md:min-w-1/3"
+            class="md:min-w-1/3 h-full"
           />
         </div>
       </div>

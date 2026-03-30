@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col gap-1 w-full">
     <label v-if="label" :for="inputId" class="text-sm font-medium text-black">
       {{ label }}
       <span v-if="required" class="text-red-500 ml-0.5">*</span>
