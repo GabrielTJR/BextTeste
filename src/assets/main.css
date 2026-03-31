@@ -30,7 +30,7 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg);
+  background: none;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-dark);

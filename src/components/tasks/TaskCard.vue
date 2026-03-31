@@ -1,9 +1,7 @@
 <template>
   <div
-    class="group bg-[var(--color-back-card)] rounded-xl border border-gray-200 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
-    :class="{
-      'opacity-50 border-green-500': task.completed,
-    }"
+    class="group bg-[var(--color-back-card)] rounded-xl border border-gray-500 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
+    :class="task.completed ? 'opacity-50 border-green-500' : 'hover:border-gray-200'"
     @click="$emit('view', task)"
   >
     <div class="p-4 h-full flex flex-col justify-between">

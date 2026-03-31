@@ -62,12 +62,12 @@
 
     <div
       v-if="tasks.length === 0"
-      class="flex flex-col items-center justify-center py-8 rounded-xl border-2 border-dashed border-gray-200 text-center"
+      class="flex flex-col items-center justify-center py-8 mx-4 rounded-xl border-2 border-dashed border-gray-200 text-center"
     >
       <p class="text-sm text-gray-400">Nenhuma tarefa nesta categoria/prioridade</p>
     </div>
 
-    <div class="flex-1 min-h-0 overflow-y-auto">
+    <div class="flex-1 min-h-0 md:overflow-y-auto bg-transparent">
       <div class="px-4 pb-3 pt-1">
         <TransitionGroup
           name="slide-up"
