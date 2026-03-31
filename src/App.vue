@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 
-const APP_VERSION = '1.0.1'
+const APP_VERSION = '1.0.2'
 
 const storedVersion = localStorage.getItem('app_version')
 

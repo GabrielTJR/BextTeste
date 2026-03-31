@@ -73,7 +73,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function editTask(id: string, updates: Partial<Task>) {
+  async function editTask(id: number, updates: Partial<Task>) {
     try {
       const updated = await mockApi.updateTask(id, updates)
       const index = tasks.value.findIndex((t) => t.id === id)
@@ -83,7 +83,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function removeTask(id: string) {
+  async function removeTask(id: number) {
     try {
       await mockApi.deleteTask(id)
       tasks.value = tasks.value.filter((t) => t.id !== id)
@@ -92,7 +92,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function toggleComplete(id: string) {
+  async function toggleComplete(id: number) {
     const task = tasks.value.find((t) => t.id === id)
     if (task) await editTask(id, { completed: !task.completed })
   }

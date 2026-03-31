@@ -4,7 +4,7 @@ export type TypeUser = 'user' | 'admin'
 export type ShowMode = 'list' | 'grid'
 
 export interface Task {
-  id: string
+  id: number
   userId: number
   title: string
   description: string
