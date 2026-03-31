@@ -28,9 +28,9 @@
         </div>
         <div
           v-else
-          class="w-full flex flex-col gap-3 border-0 border-gray-500 md:border-t min-h-0 h-full flex-1 min-h-0"
+          class="w-full flex flex-col border-0 border-gray-500 md:border-t min-h-0 h-full flex-1 min-h-0"
         >
-          <div class="flex flex-row justify-between items-center p-3">
+          <div class="flex flex-row justify-between items-center px-3 py-1">
             <h1 class="text-xl font-bold text-white w-1/4">Minhas Tarefas</h1>
             <div class="w-1/2 justify-center flex flex-row items-center">
               <BaseInput
@@ -167,7 +167,7 @@ async function handleFormSubmit(data: Omit<Task, 'id' | 'createdAt' | 'userId'>)
   selectedTask.value = null
 }
 
-async function handleDelete(id: string) {
+async function handleDelete(id: number) {
   await taskStore.removeTask(id)
 }
 </script>

@@ -131,8 +131,8 @@ const props = defineProps<{ task: Task }>()
 defineEmits<{
   view: [task: Task]
   edit: [task: Task]
-  delete: [id: string]
-  toggle: [id: string]
+  delete: [id: number]
+  toggle: [id: number]
 }>()
 
 const today = new Date().toISOString().split('T')[0]

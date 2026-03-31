@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-3 h-full min-h-0">
-    <div class="flex items-center justify-between gap-3 p-2 pb-0">
+  <div class="flex flex-col gap-1 h-full min-h-0">
+    <div class="flex items-center justify-between gap-3 px-2 pb-0">
       <div class="flex items-center gap-2">
         <h2 class="text-base font-semibold text-white">{{ categoryMeta[category].label }}</h2>
         <PriorityBadge v-if="priority !== 'all'" :priority="priority" />
@@ -68,7 +68,7 @@
     </div>
 
     <div class="flex-1 min-h-0 md:overflow-y-auto bg-transparent">
-      <div class="px-4 pb-3 pt-1">
+      <div class="px-4 pb-1 pt-1">
         <TransitionGroup
           name="slide-up"
           tag="div"
@@ -108,8 +108,8 @@ defineProps<{
 defineEmits<{
   view: [task: Task]
   edit: [task: Task]
-  delete: [id: string]
-  toggle: [id: string]
+  delete: [id: number]
+  toggle: [id: number]
   changeMode: [value: ShowMode]
 }>()
 
