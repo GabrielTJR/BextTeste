@@ -1,9 +1,10 @@
-export type Priority = 'low' | 'medium' | 'high'
-export type Category = 'health' | 'work' | 'study'
+export type Priority = 'low' | 'medium' | 'high' | 'all'
+export type Category = 'health' | 'work' | 'study' | 'all'
 export type TypeUser = 'user' | 'admin'
+export type ShowMode = 'list' | 'grid'
 
 export interface Task {
-  id: string
+  id: number
   userId: number
   title: string
   description: string
@@ -23,6 +24,6 @@ export interface User {
 }
 
 export interface FilterState {
-  category: Category | 'all'
-  priority: Priority | 'all'
+  category: Category
+  priority: Priority
 }

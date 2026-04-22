@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="text-white px-4 sm:px-6 py-4 flex items-center justify-between shadow-md shadow-white"
-  >
+  <header class="text-white px-4 sm:px-6 py-4 flex items-center justify-between">
     <div class="flex items-center gap-3 flex-1">
       <img src="/favicon.png" class="w-auto h-8" />
     </div>

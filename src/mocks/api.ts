@@ -8,7 +8,7 @@ export const MOCK_USERS: User[] = [
 
 const SEED_TASKS: Task[] = [
   {
-    id: '1',
+    id: 1,
     userId: 1,
     title: 'Revisar relatório mensal',
     description: 'Verificar os dados de desempenho e consolidar o relatório para envio.',
@@ -19,7 +19,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '2',
+    id: 2,
     userId: 1,
     title: 'Estudar Vue 3 Composition API',
     description: 'Aprender sobre composables e o novo sistema de reatividade.',
@@ -30,7 +30,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '3',
+    id: 3,
     userId: 1,
     title: 'Academia',
     description: 'Treino de musculação — foco em membros superiores.',
@@ -41,7 +41,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '4',
+    id: 4,
     userId: 2,
     title: 'Reunião com equipe de produto',
     description: 'Alinhar prioridades para o próximo sprint.',
@@ -52,7 +52,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '5',
+    id: 5,
     userId: 2,
     title: 'Ler livro Clean Code',
     description: 'Capítulos 5 a 8 sobre funções e comentários.',
@@ -63,7 +63,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '6',
+    id: 6,
     userId: 1,
     title: 'Consulta médica',
     description: 'Ir para consulta médica e marcar exames',
@@ -74,7 +74,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '7',
+    id: 7,
     userId: 2,
     title: 'Realizar corrida 5km',
     description: 'Exercício de corrida em um percurso de 5 quilometros',
@@ -85,7 +85,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '8',
+    id: 8,
     userId: 1,
     title: 'Terminar projeto em Vue e Typescript',
     description: 'Realizar ajustes no painel para atender necessidades da entrega',
@@ -96,7 +96,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '9',
+    id: 9,
     userId: 2,
     title: 'Entregar indicadores financeiros',
     description: 'Realizar a criação dos dashboards solicitados pelo setor financeiro da empresa.',
@@ -107,7 +107,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '10',
+    id: 10,
     userId: 1,
     title: 'Estudar para prova de banco de dados',
     description: 'Revisar conteúdos passados em aula para praticar o conhecimento',
@@ -118,7 +118,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '11',
+    id: 11,
     userId: 2,
     title: 'Ler Livro Teórico',
     description: 'Realizar a leitura de um livro relacionado ao assunto da graduação.',
@@ -129,7 +129,7 @@ const SEED_TASKS: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: '12',
+    id: 12,
     userId: 1,
     title: 'Praticar Natação',
     description:
@@ -160,9 +160,10 @@ export const mockApi = {
   async createTask(task: Omit<Task, 'id' | 'createdAt'>): Promise<Task> {
     await delay()
     const tasks = await this.getTasks()
+    const nextId = tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1
     const newTask: Task = {
       ...task,
-      id: crypto.randomUUID(),
+      id: nextId,
       createdAt: new Date().toISOString(),
     }
     tasks.push(newTask)
@@ -170,7 +171,7 @@ export const mockApi = {
     return newTask
   },
 
-  async updateTask(id: string, updates: Partial<Task>): Promise<Task> {
+  async updateTask(id: number, updates: Partial<Task>): Promise<Task> {
     await delay()
     const tasks = await this.getTasks()
     const index = tasks.findIndex((t) => t.id === id)
@@ -180,7 +181,7 @@ export const mockApi = {
     return tasks[index]
   },
 
-  async deleteTask(id: string): Promise<void> {
+  async deleteTask(id: number): Promise<void> {
     await delay()
     const tasks = await this.getTasks()
     const filtered = tasks.filter((t) => t.id !== id)

@@ -8,6 +8,7 @@ export const useTaskStore = defineStore('tasks', () => {
   const tasks = ref<Task[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const search = ref<string>('')
 
   const filters = ref<FilterState>({
     category: 'all',
@@ -27,13 +28,17 @@ export const useTaskStore = defineStore('tasks', () => {
         filters.value.category === 'all' || task.category === filters.value.category
       const matchPriority =
         filters.value.priority === 'all' || task.priority === filters.value.priority
-      return matchCategory && matchPriority
+      const matchSearch =
+        !search.value || task.title.toLowerCase().includes(search.value.toLowerCase())
+
+      return matchCategory && matchPriority && matchSearch
     })
   })
 
   const tasksByCategory = computed(() => {
-    const categories: Record<Category, Task[]> = { health: [], work: [], study: [] }
+    const categories: Record<Category, Task[]> = { all: [], health: [], work: [], study: [] }
     filteredTasks.value.forEach((task) => {
+      categories['all'].push(task)
       categories[task.category].push(task)
     })
     return categories
@@ -68,7 +73,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function editTask(id: string, updates: Partial<Task>) {
+  async function editTask(id: number, updates: Partial<Task>) {
     try {
       const updated = await mockApi.updateTask(id, updates)
       const index = tasks.value.findIndex((t) => t.id === id)
@@ -78,7 +83,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function removeTask(id: string) {
+  async function removeTask(id: number) {
     try {
       await mockApi.deleteTask(id)
       tasks.value = tasks.value.filter((t) => t.id !== id)
@@ -87,7 +92,7 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  async function toggleComplete(id: string) {
+  async function toggleComplete(id: number) {
     const task = tasks.value.find((t) => t.id === id)
     if (task) await editTask(id, { completed: !task.completed })
   }
@@ -98,12 +103,14 @@ export const useTaskStore = defineStore('tasks', () => {
 
   function resetFilters() {
     filters.value = { category: 'all', priority: 'all' }
+    search.value = ''
   }
 
   return {
     tasks,
     loading,
     error,
+    search,
     filters,
     userTasks,
     filteredTasks,

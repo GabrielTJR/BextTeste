@@ -1,12 +1,10 @@
 <template>
   <div
-    class="group bg-[var(--color-back)] rounded-xl border border-gray-200 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
-    :class="{
-      'opacity-85': task.completed,
-    }"
+    class="group bg-[var(--color-back-card)] rounded-xl border border-gray-500 transition-all duration-200 cursor-pointer', 'hover:shadow-md hover:-translate-y-0.5"
+    :class="task.completed ? 'opacity-50 border-green-500' : 'hover:border-gray-200'"
     @click="$emit('view', task)"
   >
-    <div class="p-4">
+    <div class="p-4 h-full flex flex-col justify-between">
       <div class="flex items-start justify-between gap-2 mb-2">
         <div class="flex items-start gap-2 min-w-0">
           <h3
@@ -58,6 +56,7 @@
           </button>
           <button
             class="rounded text-white hover:text-green-500 hover:bg-green-50 hover:text-green-500 transition-colors"
+            :title="task.completed ? 'Reabrir' : 'Concluir'"
             @click.stop="askComplete"
           >
             <svg
@@ -89,8 +88,8 @@
       </p>
 
       <div class="footer flex items-center justify-between">
-        <div class="flex flex-col w-full justify-start gap-0.5">
-          <PriorityBadge :priority="task.priority" />
+        <div class="flex flex-row w-full justify-between gap-0.5">
+          <PriorityBadge class="w-max" :priority="task.priority" />
           <span v-if="isAdmin" class="text-xs text-white italic"> Usuário: {{ taskOwner }} </span>
           <span
             v-if="task.dueDate"
@@ -132,8 +131,8 @@ const props = defineProps<{ task: Task }>()
 defineEmits<{
   view: [task: Task]
   edit: [task: Task]
-  delete: [id: string]
-  toggle: [id: string]
+  delete: [id: number]
+  toggle: [id: number]
 }>()
 
 const today = new Date().toISOString().split('T')[0]

@@ -10,7 +10,7 @@
     />
 
     <div class="flex flex-col gap-1">
-      <label class="text-sm font-medium text-white">Descrição</label>
+      <label class="text-sm font-medium text-black">Descrição</label>
       <textarea
         v-model="form.description"
         placeholder="Detalhes da tarefa..."
@@ -48,9 +48,9 @@
         id="completed-check"
         v-model="form.completed"
         type="checkbox"
-        class="w-4 h-4 rounded border-gray-300 text-white focus:ring-primary cursor-pointer accent-primary"
+        class="w-4 h-4 rounded border-gray-300 text-black focus:ring-primary cursor-pointer accent-primary"
       />
-      <label for="completed-check" class="text-sm text-white cursor-pointer"
+      <label for="completed-check" class="text-sm text-black cursor-pointer"
         >Marcar como concluída</label
       >
     </div>
